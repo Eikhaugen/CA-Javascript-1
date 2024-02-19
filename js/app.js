@@ -1,6 +1,10 @@
-import { getProducts, filterProducts, productsContainer, filterBtns, loader } from './utils.js';
+import { getProducts, filterProducts, filterBtns, cartMenuBTN, toggleCartMenu, updateCart, removeFromCart, cartContainer } from './utils.js';
+
+updateCart();
 
 getProducts();
+
+cartMenuBTN.addEventListener("click", toggleCartMenu);
 
 filterBtns.forEach((btn) => {
     btn.addEventListener("click", function () {
@@ -12,4 +16,12 @@ filterBtns.forEach((btn) => {
         }
     });
 });
+
+cartContainer.addEventListener("click", (event) => {
+    if (event.target.classList.contains("removeButton")) {
+        const index = event.target.dataset.index;
+        removeFromCart(index);
+    }
+});
+
 
