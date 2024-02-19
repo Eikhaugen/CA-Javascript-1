@@ -2,9 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../../css/style.css">
+    <script src="https://kit.fontawesome.com/6747f39511.js" crossorigin="anonymous"></script>
+    <script src="../../js/product.js" defer type="module"></script>
+    <title>Product</title>
 </head>
 <body>
+    <header>
+        <div>
+            <img class="logo" src="../../assets/images/rainy-days-logo.svg">
+            <a href="../../index.html">Home</a>
+        </div>
+        <div class="cart-icon-container">
+            <i id="cartToggleBTN" class="fa-solid fa-cart-shopping fa-xl"></i>
+            <span class="cart-counter"></span>
+        </div>
+        <div>
+            <ul id="cartContainer">
+            </ul>
+        </div>
+    </header>
+    <span class="loader">Loading...</span>
+    <div id="products-container">
+    </div>
 
 </body>
 </html>
