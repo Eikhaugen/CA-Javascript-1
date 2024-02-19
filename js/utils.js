@@ -128,7 +128,7 @@ export async function getSingleProduct() {
                                     </div>
                             </div>
                             <select class="sizeSelection"></select>
-                            <button id="addToCartBTN">
+                            <button class="addToCartBTN">
                                 Add to cart
                             </button>
                         </div>`;
@@ -145,7 +145,7 @@ export async function getSingleProduct() {
                                 <span class="product-price">${jacket.price}</span>
                             </div>
                             <select class="sizeSelection"></select>
-                            <button id="addToCartBTN">
+                            <button class="addToCartBTN">
                                 Add to cart
                             </button>
                         </div>`;
@@ -203,15 +203,8 @@ export function updateCart() {
         cartContainer.innerHTML = "<p>Your cart is empty.</p>";
     } else {
         let cartSum = 0;
-        for (let i = 0; i < cartArrayLength; i++) {
-            if (cartArray.onSale) {
-                cartSum = cartSum + cartArray[i].discountedPrice;
-            } else {
-                cartSum = cartSum + cartArray[i].price;
-            }
-        }
         let cartHTML = "";
-        cartArray.forEach((item) => {
+        cartArray.forEach((item, index) => {
             if (item.onSale) {
                 cartHTML += `
         <li class="cartProductCard">
@@ -223,12 +216,11 @@ export function updateCart() {
           <span class="cartPreviousPrice">${item.price}</span>
           <span class="cartDiscountedPrice">${item.discountedPrice}</span>
           </div>
-            <button class="removeButton">X</button>
+            <button class="removeButton" data-index="${index}">X</button>
           </div>
         </li>
       `;
-            }
-            if (!item.onSale) {
+            } else {
                 cartHTML += `
         <li class="cartProductCard">
           <img class="cartProductImg" src="${item.image.url}">
@@ -238,10 +230,15 @@ export function updateCart() {
               <div class="cartPriceContainer">
                 <span>${item.price}</span>
               </div>
-              <button class="removeButton">X</button>
+              <button class="removeButton" data-index="${index}">X</button>
           </div>
         </li>
       `;
+            }
+            if (item.onSale) {
+                cartSum += item.discountedPrice;
+            } else {
+                cartSum += item.price;
             }
         });
         cartHTML += `
@@ -254,3 +251,8 @@ export function updateCart() {
     }
 }
 
+export function removeFromCart(index) {
+    cartArray.splice(index, 1);
+    localStorage.setItem("RainydaysCart", JSON.stringify(cartArray));
+    updateCart();
+}
