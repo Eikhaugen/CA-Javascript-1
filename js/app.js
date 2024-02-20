@@ -24,4 +24,8 @@ cartContainer.addEventListener("click", (event) => {
     }
 });
 
-
+cartContainer.addEventListener("click", (event) => {
+    if (event.target.classList.contains("checkoutButton")) {
+        window.location.href = "pages/checkout/index.html"
+    }
+});

@@ -1,4 +1,4 @@
-import {getSingleProduct, cartMenuBTN, toggleCartMenu, addToCart, selectedJacket, updateCart} from './utils.js';
+import {getSingleProduct, cartMenuBTN, toggleCartMenu, addToCart, selectedJacket, updateCart, cartContainer, removeFromCart} from './utils.js';
 
 getSingleProduct();
 
@@ -11,4 +11,17 @@ document.addEventListener("click", (event) => {
         addToCart(selectedJacket);
     }
     updateCart();
+});
+
+cartContainer.addEventListener("click", (event) => {
+    if (event.target.classList.contains("checkoutButton")) {
+        window.location.href = "../../pages/checkout/index.html"
+    }
+});
+
+cartContainer.addEventListener("click", (event) => {
+    if (event.target.classList.contains("removeButton")) {
+        const index = event.target.dataset.index;
+        removeFromCart(index);
+    }
 });
