@@ -50,7 +50,7 @@ a, a:link, a:visited, a:hover, a:active {
     align-items: center;
 }
 
-.product-card {
+.product-card{
     flex-grow: 1;
     width: fit-content;
     display: flex;
@@ -204,4 +204,35 @@ a, a:link, a:visited, a:hover, a:active {
 }
 .cartPreviousPrice {
     text-decoration: line-through;
+}
+
+#checkout-container{
+    padding: 2rem;
+    width: 100%;
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.checkout-details, .checkout-summary{
+    flex-grow: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid grey;
+    border-radius: .5rem;
+    padding: 1rem;
+    max-height: 500px;
+    background-color: white;
+}
+
+.checkout-details input{
+    width: 100%;
+}
+
+.checkout-summary{
+    flex-grow: 2;
 }
