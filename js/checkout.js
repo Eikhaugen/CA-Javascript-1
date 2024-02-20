@@ -1,10 +1,10 @@
-import {getProducts} from "./utils.js";
+import {displayCheckout} from "./utils.js";
+export const confirmOrderBTN = document.querySelector(".confirmOrder");
 
-const checkoutSummary = document.querySelector(".checkout-summary");
+displayCheckout()
 
-function displayCheckout(){
-
-checkoutSummary.innerHTML += `
-    
-`
-}
+confirmOrderBTN.addEventListener("click", (event)=>{
+    if (event.target.classList.contains("confirmOrder")) {
+    window.location.href = "../pages/checkout-success/index.html"
+    }
+})

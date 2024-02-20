@@ -1,11 +1,12 @@
+export const cartArray = JSON.parse(window.localStorage.getItem("RainydaysCart")) || [];
 export const productsContainer = document.querySelector("#products-container");
 export const filterBtns = document.querySelectorAll(".filterBtn");
 export const cartMenuBTN = document.querySelector(".cart-icon-container");
 export const cartMenu = document.querySelector("#cartContainer");
 export const loader = document.querySelector(".loader");
-export const cartArray = JSON.parse(window.localStorage.getItem("RainydaysCart")) || [];
 export const cartCounter = document.querySelector(".cart-counter");
-export const cartContainer = document.getElementById("cartContainer");
+export const cartContainer = document.querySelector(".cartContainer");
+export const checkoutButton = document.querySelector(".checkoutButton");
 export let selectedJacket;
 
 // Homepage
@@ -172,6 +173,20 @@ export async function getSingleProduct() {
 }
 
 //Cart Functions
+
+cartContainer.addEventListener("click", (event) => {
+    if (event.target.classList.contains("checkoutButton")) {
+        window.location.href = "../../pages/checkout/index.html"
+    }
+});
+
+cartContainer.addEventListener("click", (event) => {
+    if (event.target.classList.contains("removeButton")) {
+        const index = event.target.dataset.index;
+        removeFromCart(index);
+    }
+});
+
 export function toggleCartMenu() {
     if (cartMenu.style.display === "none" || cartMenu.style.display === "") {
         cartMenu.style.display = "flex";
@@ -255,3 +270,43 @@ export function removeFromCart(index) {
     localStorage.setItem("RainydaysCart", JSON.stringify(cartArray));
     updateCart();
 }
+
+export function displayCheckout(){
+    let checkoutSummary = document.querySelector(".checkout-summary");
+    let checkoutSum = 0;
+    let checkoutHTML =``
+    //Display items inside checkout summary
+cartArray.forEach((item)=>{
+    if(item.onSale) {
+        checkoutSum += item.discountedPrice;
+        checkoutHTML += `
+    <li class="checkoutProductCard">
+    <img src="${item.image.url}">
+    <div class="checkoutProductCardDetails">
+            <h3>${item.title}</h3>
+         <span class="checkoutPreviousPrice">${item.discountedPrice}</span>
+         </div>
+    </li>
+    `
+    }
+    if(!item.onSale){
+        checkoutSum += item.price;
+        checkoutHTML += `
+    <li class="checkoutProductCard">
+    <img src="${item.image.url}">
+    <div class="checkoutProductCardDetails">
+            <h3>${item.title}</h3>
+         <span class="checkoutPreviousPrice">${item.price}</span>
+         </div>
+
+</li>
+    `;
+    }
+
+})
+    checkoutHTML += `
+                    <li class="checkoutTotal"><span>Total:</span><span>${checkoutSum.toFixed(2 )}</span></li>`
+    checkoutSummary.innerHTML = checkoutHTML
+
+}
+
