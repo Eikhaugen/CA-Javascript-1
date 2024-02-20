@@ -188,7 +188,6 @@ export function addToCart(jacket) {
 
 export function updateCart() {
     let cartArrayLength = cartArray.length;
-    console.log(cartArray);
 
     // Display or hide cart counter
     cartCounter.innerHTML = cartArrayLength.toString();
