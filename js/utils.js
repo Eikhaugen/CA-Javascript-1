@@ -1,8 +1,9 @@
+// noinspection JSUnresolvedReference,SpellCheckingInspection
+
 export const cartArray = JSON.parse(window.localStorage.getItem("RainydaysCart")) || [];
 export const productsContainer = document.querySelector("#products-container");
 export const filterBtns = document.querySelectorAll(".filterBtn");
 export const cartMenuBTN = document.querySelector(".cart-icon-container");
-export const cartMenu = document.querySelector("#cartContainer");
 export const loader = document.querySelector(".loader");
 export const cartCounter = document.querySelector(".cart-counter");
 export const cartContainer = document.querySelector(".cartContainer");
@@ -30,7 +31,7 @@ export function displayProducts(jackets) {
             productsContainer.innerHTML += `
             <a class="product-card" href="./pages/product/index.html?id=${jacket.id}">
                 <div class="product-image-container">
-                    <img class="product-image" src="${jacket.image.url}">
+                    <img class="product-image" src="${jacket.image.url}" alt="jacket.image.alt">
                 </div>
                 <div class="product-detail-container">
                     <span class="product-title">${jacket.title}</span>
@@ -45,7 +46,7 @@ export function displayProducts(jackets) {
             productsContainer.innerHTML += `
             <a class="product-card" href="./pages/product/index.html?id=${jacket.id}">
                 <div class="product-image-container">
-                    <img class="product-image" src="${jacket.image.url}">
+                    <img class="product-image" src="${jacket.image.url}" alt="jacket.image.alt">
                 </div>
                 <div class="product-detail-container">
                     <span class="product-title">${jacket.title}</span>
@@ -68,7 +69,7 @@ export async function filterProducts(filterParam) {
                 productsContainer.innerHTML += `
             <a class="product-card" href="product.html?id=${jacket.id}">
                 <div class="product-image-container">
-                    <img class="product-image" src="${jacket.image.url}">
+                    <img class="product-image" src="${jacket.image.url}" alt="jacket.image.alt">
                 </div>
                 <div class="product-detail-container">
                     <span class="product-title">${jacket.title}</span>
@@ -83,7 +84,7 @@ export async function filterProducts(filterParam) {
                 productsContainer.innerHTML += `
             <a class="product-card" href="product.html?id=${jacket.id}">
                 <div class="product-image-container">
-                    <img class="product-image" src="${jacket.image.url}">
+                    <img class="product-image" src="${jacket.image.url}" alt="jacket.image.alt">
                 </div>
                 <div class="product-detail-container">
                     <span class="product-title">${jacket.title}</span>
@@ -118,7 +119,7 @@ export async function getSingleProduct() {
                         <div class="product-card">
                        
                             <div class="product-image-container">
-                                <img class="product-image" src="${jacket.image.url}">
+                                <img class="product-image" src="${jacket.image.url}" alt="jacket.image.alt">
                             </div>
                             <div class="product-detail-container">
                                 <span class="product-title">${jacket.title}</span>
@@ -138,7 +139,7 @@ export async function getSingleProduct() {
                     productsContainer.innerHTML += `
                         <div class="product-card">
                             <div class="product-image-container">
-                                <img class="product-image" src="${jacket.image.url}">
+                                <img class="product-image" src="${jacket.image.url}" alt="jacket.image.alt">
                             </div>
                             <div class="product-detail-container">
                                 <span class="product-title">${jacket.title}</span>
@@ -173,25 +174,11 @@ export async function getSingleProduct() {
 }
 
 //Cart Functions
-
-cartContainer.addEventListener("click", (event) => {
-    if (event.target.classList.contains("checkoutButton")) {
-        window.location.href = "../../pages/checkout/index.html"
-    }
-});
-
-cartContainer.addEventListener("click", (event) => {
-    if (event.target.classList.contains("removeButton")) {
-        const index = event.target.dataset.index;
-        removeFromCart(index);
-    }
-});
-
 export function toggleCartMenu() {
-    if (cartMenu.style.display === "none" || cartMenu.style.display === "") {
-        cartMenu.style.display = "flex";
+    if (cartContainer.style.display === "none" || cartContainer.style.display === "") {
+        cartContainer.style.display = "flex";
     } else {
-        cartMenu.style.display = "none";
+        cartContainer.style.display = "none";
     }
 }
 
@@ -222,7 +209,7 @@ export function updateCart() {
             if (item.onSale) {
                 cartHTML += `
         <li class="cartProductCard">
-          <img class="cartProductImg" src="${item.image.url}">
+          <img class="cartProductImg" src="${item.image.url}" alt="jacket.image.alt">
           <div>
           <span>${item.title}</span>
           <span>Size: ${item.selectedSize}</span>
@@ -237,7 +224,7 @@ export function updateCart() {
             } else {
                 cartHTML += `
         <li class="cartProductCard">
-          <img class="cartProductImg" src="${item.image.url}">
+          <img class="cartProductImg" src="${item.image.url}" alt="jacket.image.alt">
           <div class="cartProductDetails">
             <span>${item.title}</span>
             <span>Size: ${item.selectedSize}</span>
@@ -271,6 +258,7 @@ export function removeFromCart(index) {
     updateCart();
 }
 
+// Checkout page functions
 export function displayCheckout(){
     let checkoutSummary = document.querySelector(".checkout-summary");
     let checkoutSum = 0;
@@ -281,7 +269,7 @@ cartArray.forEach((item)=>{
         checkoutSum += item.discountedPrice;
         checkoutHTML += `
     <li class="checkoutProductCard">
-    <img src="${item.image.url}">
+    <img src="${item.image.url}" alt="jacket.image.alt">
     <div class="checkoutProductCardDetails">
             <h3>${item.title}</h3>
          <span class="checkoutPreviousPrice">${item.discountedPrice}</span>
@@ -293,7 +281,7 @@ cartArray.forEach((item)=>{
         checkoutSum += item.price;
         checkoutHTML += `
     <li class="checkoutProductCard">
-    <img src="${item.image.url}">
+    <img src="${item.image.url}" alt="jacket.image.alt">
     <div class="checkoutProductCardDetails">
             <h3>${item.title}</h3>
          <span class="checkoutPreviousPrice">${item.price}</span>
@@ -309,4 +297,3 @@ cartArray.forEach((item)=>{
     checkoutSummary.innerHTML = checkoutHTML
 
 }
-
