@@ -1,5 +1,3 @@
-// noinspection JSUnresolvedReference,SpellCheckingInspection
-
 export const cartArray = JSON.parse(window.localStorage.getItem("RainydaysCart")) || [];
 export const productsContainer = document.querySelector("#products-container");
 export const filterBtns = document.querySelectorAll(".filterBtn");
@@ -67,7 +65,7 @@ export async function filterProducts(filterParam) {
         jackets.forEach((jacket) => {
             if (jacket.onSale && jacket.gender === filterParam) {
                 productsContainer.innerHTML += `
-            <a class="product-card" href="product.html?id=${jacket.id}">
+            <a class="product-card" href="./pages/product/index.html?id=${jacket.id}">
                 <div class="product-image-container">
                     <img class="product-image" src="${jacket.image.url}" alt="jacket.image.alt">
                 </div>
@@ -82,7 +80,7 @@ export async function filterProducts(filterParam) {
             }
             if (!jacket.onSale && jacket.gender === filterParam) {
                 productsContainer.innerHTML += `
-            <a class="product-card" href="product.html?id=${jacket.id}">
+            <a class="product-card" href="./pages/product/index.html?id=${jacket.id}">
                 <div class="product-image-container">
                     <img class="product-image" src="${jacket.image.url}" alt="jacket.image.alt">
                 </div>
@@ -116,7 +114,7 @@ export async function getSingleProduct() {
             if (jacket.id === jacketURLid) {
                 if (jacket.onSale) {
                     productsContainer.innerHTML = `
-                        <div class="product-card">
+                        <div class="single-product-card">
                        
                             <div class="product-image-container">
                                 <img class="product-image" src="${jacket.image.url}" alt="jacket.image.alt">
@@ -129,7 +127,6 @@ export async function getSingleProduct() {
                                         <span class="product-discount-price">${jacket.discountedPrice}</span>
                                     </div>
                             </div>
-                            <select class="sizeSelection"></select>
                             <button class="addToCartBTN">
                                 Add to cart
                             </button>
@@ -137,7 +134,7 @@ export async function getSingleProduct() {
                 }
                 if (!jacket.onSale) {
                     productsContainer.innerHTML += `
-                        <div class="product-card">
+                        <div class="single-product-card">
                             <div class="product-image-container">
                                 <img class="product-image" src="${jacket.image.url}" alt="jacket.image.alt">
                             </div>
@@ -146,17 +143,12 @@ export async function getSingleProduct() {
                                 <span>${jacket.description}</span>
                                 <span class="product-price">${jacket.price}</span>
                             </div>
-                            <select class="sizeSelection"></select>
                             <button class="addToCartBTN">
                                 Add to cart
                             </button>
                         </div>`;
                 }
 
-                const sizeSelector = document.querySelector(".sizeSelection");
-                jacket.sizes.forEach((size) => {
-                    sizeSelector.innerHTML += `<option>${size}</option>`;
-                });
                 selectedJacket = jacket
                 found = true;
                 loader.style.display = "none";
@@ -212,7 +204,6 @@ export function updateCart() {
           <img class="cartProductImg" src="${item.image.url}" alt="jacket.image.alt">
           <div>
           <span>${item.title}</span>
-          <span>Size: ${item.selectedSize}</span>
           <div class="cartPriceContainer">
           <span class="cartPreviousPrice">${item.price}</span>
           <span class="cartDiscountedPrice">${item.discountedPrice}</span>
@@ -227,7 +218,6 @@ export function updateCart() {
           <img class="cartProductImg" src="${item.image.url}" alt="jacket.image.alt">
           <div class="cartProductDetails">
             <span>${item.title}</span>
-            <span>Size: ${item.selectedSize}</span>
               <div class="cartPriceContainer">
                 <span>${item.price}</span>
               </div>
@@ -263,6 +253,7 @@ export function displayCheckout(){
     let checkoutSummary = document.querySelector(".checkout-summary");
     let checkoutSum = 0;
     let checkoutHTML =``
+
     //Display items inside checkout summary
 cartArray.forEach((item)=>{
     if(item.onSale) {

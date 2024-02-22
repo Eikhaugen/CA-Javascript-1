@@ -1,7 +1,7 @@
-import {displayCheckout, cartArray} from "./utils.js";
+import {displayCheckout, cartArray} from "./main.js";
 const confirmOrderBTN = document.querySelector(".confirmOrder");
 
-displayCheckout()
+displayCheckout();
 
 confirmOrderBTN.addEventListener("click", (event)=>{
     if (event.target.classList.contains("confirmOrder")) {

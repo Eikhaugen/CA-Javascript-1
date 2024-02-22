@@ -1,4 +1,4 @@
-import {getSingleProduct, cartMenuBTN, toggleCartMenu, addToCart, selectedJacket, updateCart, cartContainer, removeFromCart} from './utils.js';
+import {getSingleProduct, cartMenuBTN, toggleCartMenu, addToCart, selectedJacket, updateCart, cartContainer, removeFromCart} from './main.js';
 
 getSingleProduct();
 

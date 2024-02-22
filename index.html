@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="https://kit.fontawesome.com/6747f39511.js" crossorigin="anonymous"></script>
-    <script src="js/app.js" type="module" defer></script>
+    <script src="js/home.js" type="module" defer></script>
     <title>Rainydays</title>
 </head>
 <body>
     <header>
-        <div>
+        <div class="logo-container">
             <img class="logo" src="./assets/images/rainy-days-logo.svg">
             <a href="index.html">Home</a>
         </div>
@@ -23,9 +23,11 @@
             </ul>
         </div>
     </header>
+    <div class="filter-btns">
     <button class="filterBtnMen filterBtn" data-filter="Male">Men</button>
     <button class="filterBtnLadies filterBtn" data-filter="Female">Ladies</button>
     <button class="filterBtnAll filterBtn" data-filter="all">Show All</button>
+    </div>
     <span class="loader">Loading...</span>
     <div id="products-container">
     </div>
