@@ -82,5 +82,3 @@ The form on the checkout page has no functionality, other than displaying the it
 I decided to empty the cart saved in localstorage after checking out.
 
 Overall I feel like the coding went well, there was some stumbling blocks along the way, but referencing the course material and what I had done during lectures, I managed to find solutions.
-
-
