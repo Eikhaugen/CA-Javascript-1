@@ -81,4 +81,6 @@ I could have spent time adding a counter in the cart that counts up quantities i
 The form on the checkout page has no functionality, other than displaying the items added in the cart and calculating a total.
 I decided to empty the cart saved in localstorage after checking out.
 
+On the single product detail page, even though the API supports getting a single product by it's ID, I made a fetch request that gets all the products, compares them to the one that was clicked on on the homepage, and then displays it. I realize that this would not be a good solution if there was a huge database of products to compare with, I didn't think of it when I made it, but luckily thye provided API only has 12 products, and it would be easy to fix if the database was to grow.
+
 Overall I feel like the coding went well, there was some stumbling blocks along the way, but referencing the course material and what I had done during lectures, I managed to find solutions.
