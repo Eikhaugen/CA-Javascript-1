@@ -177,7 +177,6 @@ export function toggleCartMenu() {
 export function addToCart(jacket) {
     cartArray.push(jacket);
     localStorage.setItem("RainydaysCart", JSON.stringify(cartArray));
-    console.log("Product added to cart:", jacket);
 }
 
 export function updateCart() {
